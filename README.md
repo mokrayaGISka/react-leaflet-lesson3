@@ -1,4 +1,4 @@
-# react-leaflet-lesson2
+# react-leaflet-lesson3
 React leaflet web application for adding geojson layer   
 
 JS application code written using react and react-leaflet    
