@@ -1,5 +1,6 @@
 import React from 'react';
 import { GeoJSON, FeatureGroup, Popup } from 'react-leaflet';
+import "../css/GeojsonLayer.css"
 
 export default class GeojsonLayer extends React.Component {
   constructor(props) {

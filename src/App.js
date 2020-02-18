@@ -1,5 +1,5 @@
 import React from 'react';
-import MapComponent from "./MapGeojson.jsx";
+import MapComponent from "./components/MapGeojson.jsx";
 import './App.css';
 
 function App() {
