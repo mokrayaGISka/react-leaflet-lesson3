@@ -13,6 +13,16 @@ export default class GeojsonLayer extends React.Component {
     console.log('contructor');
   }
 
+  myStyle = () => {
+    return {
+      color: "green",
+      weight: 3,
+      opacity: 1,
+      fillColor: "red",
+      dashArray: '8 5'
+    }
+  }
+
   render() {
     console.log('render');
 
@@ -20,7 +30,7 @@ export default class GeojsonLayer extends React.Component {
     return (
       <FeatureGroup>
         {this.state.data.map(f => {
-          return <GeoJSON key={f.properties.id} data={f}>
+          return <GeoJSON key={f.properties.id} data={f} style={this.myStyle}>
              <Popup>{f.properties.name}</Popup>
           </GeoJSON>
         })}

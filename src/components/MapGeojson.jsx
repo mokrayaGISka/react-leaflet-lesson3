@@ -3,6 +3,7 @@ import L from 'leaflet';
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 import Basemap from './Basemaps';
 import GeojsonLayer from './GeojsonLayer';
+import CoordInsert from './CoordInsert';
 import '../css/Map.css';
 
 // указываем путь к файлам marker
@@ -16,7 +17,16 @@ class MapComponent extends React.Component {
     basemap: 'osm',
 
     geojsonvisible: false,
+    visibleModal: false,
   };
+
+  onCoordInsertChange = (lat, long, z) => {
+    this.setState({
+      lat: lat,
+      lng: long,
+      zoom: z,
+    });
+  }
 
   onBMChange = (bm) => {
     this.setState({
@@ -33,6 +43,7 @@ class MapComponent extends React.Component {
 
   render() {
     var center = [this.state.lat, this.state.lng];
+    var z = this.state.zoom;
 
     const basemapsDict = {
       osm: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
@@ -42,7 +53,7 @@ class MapComponent extends React.Component {
     }
 
     return (
-      <Map zoom={this.state.zoom} center={center}>
+      <Map zoom={z} center={center}>
         <TileLayer
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url={basemapsDict[this.state.basemap]}
@@ -60,8 +71,14 @@ class MapComponent extends React.Component {
           <GeojsonLayer url="geojson.json" />
         }
 
+        <CoordInsert onllzChange={this.onCoordInsertChange} />
+
         <Marker position={center}>
-          <Popup>Выбрана тема {this.state.basemap}</Popup>
+          <Popup>
+            Широта: {this.state.lat}<br/>
+            Долгота: {this.state.lng}<br/>
+            Масштаб: {this.state.zoom}
+          </Popup>
         </Marker>
       </Map>
     );

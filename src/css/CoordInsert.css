@@ -1,0 +1,6 @@
+.button-widget {
+  position: fixed;
+  top: 120px;
+  right: 20px;
+  z-index: 1000;
+}
